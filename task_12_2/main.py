@@ -1,6 +1,12 @@
-from classes import Square, Triangle, Circle
+from classes import Circle, Triangle, Square, Point
 
-x = Square(1, 5)
-y = Triangle(4, 6, 5)
-z = Circle(10, 15, 111)
-print(x, y, z)
+def res():
+    circle = Circle(1, 2)
+    triangle = Triangle(Point(0, 1), Point(2, 3), Point(10, 2))
+    square = Square(Point(0, 1), Point(4, 4))
+    spis_figure = []
+    spis_figure.append(circle.ploshad())
+    spis_figure.append(triangle.ploshad())
+    spis_figure.append(square.ploshad())
+    return spis_figure
+print(res())

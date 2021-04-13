@@ -1,7 +1,14 @@
+import math
+
+
 class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
+
+
+def get_length(p1, p2):
+    return math.sqrt((p2.x - p1.x) ** 2 + (p2.y - p1.y) ** 2)
 
 
 class Figure:
@@ -9,17 +16,15 @@ class Figure:
 
 
 class Circle(Figure):
-    def __init__(self, x, y, dl_radius):
-        self.point = Point(x=x, y=y)
+    def __init__(self, center, dl_radius):
+        self.center = center
         self.dl_radius = dl_radius
 
     def perimetr(self):
-        p = self.dl_radius * 3.14 * 2
-        return p
+        return self.dl_radius * math.pi * 2
 
     def ploshad(self):
-        s = (self.dl_radius ** 2) * 3.14
-        return s
+        return (self.dl_radius ** 2) * math.pi
 
 
 class Triangle(Figure):
@@ -29,12 +34,14 @@ class Triangle(Figure):
         self.c = c
 
     def perimetr(self):
-        p = self.a + self.b + self.c
-        return p
+        return get_length(self.b, self.a) + get_length(self.c, self.b) + get_length(self.c, self.a)
 
     def ploshad(self):
-        s = (self.a + self.b) / 2
-        return s
+        p1 = get_length(self.b, self.a)
+        p2 = get_length(self.c, self.b)
+        p3 = get_length(self.c, self.a)
+        p = (p1 + p2 + p3) / 2
+        return math.sqrt(p * (p - p1) * (p - p2) * (p - p3))
 
 
 class Square(Figure):
@@ -43,23 +50,7 @@ class Square(Figure):
         self.b = b
 
     def perimetr(self):
-        p = self.a * 2
-        return p
+        return get_length(self.b, self.a) * 4
 
     def ploshad(self):
-        s = self.a * 4
-        return s
-
-
-def res():
-    circle = Circle(1, 2, 3)
-    triangle = Triangle(6, 4, 5)
-    square = Square(7, 8)
-    spis_figure = []
-    spis_figure.append(circle.perimetr())
-    spis_figure.append(circle.ploshad())
-    spis_figure.append(triangle.perimetr())
-    spis_figure.append(triangle.ploshad())
-    spis_figure.append(square.perimetr())
-    spis_figure.append(square.ploshad())
-    return spis_figure
+        return get_length(self.b, self.a) ** 2 / 16
