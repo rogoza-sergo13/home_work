@@ -7,7 +7,7 @@ class ListIterator:
         return self
 
     def __next__(self):
-        if self._cursor > len(self._collection):
+        if self._cursor >= len(self._collection):
             raise StopIteration()
         a = self._collection[self._cursor] ** 2
         self._cursor += 2
