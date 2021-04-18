@@ -1,12 +1,8 @@
-f = open("123.txt", "r")
-def foo(file_name):
-    for line in f:
-        yield line.strip()
-
-print(next(foo('123.txt')))
-print(next(foo('123.txt')))
-print(next(foo('123.txt')))
-print(next(foo('123.txt')))
+def foo():
+    with open("123.txt", "r") as f:
+        for line in f:
+            yield line.strip()
 
 
-
+for line in foo():
+    print(line)
