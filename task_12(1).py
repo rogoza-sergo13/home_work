@@ -1,16 +1,11 @@
 class MyOpen:
-    def __init__(self, file):
+    def __init__(self, file, mode):
         self.file = file
+        self.mode = mode
 
     def __enter__(self):
-        try:
-            self.file_er = open(self.file)
-        except IOError:
-            self.file_er = open(self.file, "w")
-        self.file_er = open(self.file, "r")
-        return self.file_er
+        self.file = open(self.file, self.mode)
+        return self.file
 
     def __exit__(self, exp_type, exp_value, traceback):
-        self.file_er.close()
-
-
+        self.file.close()
