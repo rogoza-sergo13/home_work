@@ -9,12 +9,8 @@ class Car:
         return self.__speed
 
     def decrease_speed(self):
-        try:
-            if self.__speed < 0:
-                raise ValueError
-        except ValueError:
+        if self.__speed < 5:
             print("Your speed is not really, step on the gas")
-            self.__speed = 0
         else:
             self.__speed -= 5
         return self.__speed
@@ -25,6 +21,7 @@ class Car:
                 raise ValueError
         except ValueError:
             print("We've stopped, it's time to move")
+        self.__speed = 0
         return self.__speed
 
     def now_speed(self):
